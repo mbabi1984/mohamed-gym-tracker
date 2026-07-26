@@ -66,7 +66,7 @@
         { id: "pull-lat-pulldown", ar: "السحب العلوي", en: "Lat Pulldown", sets: 3, reps: "8–12" },
         { id: "pull-chest-supported-row", ar: "تجديف على كرسي بمسند للصدر", en: "Chest-Supported Row", sets: 3, reps: "8–12" },
         { id: "pull-seated-cable-row", ar: "سحب كيبل أمامي جالس", en: "Seated Cable Row", sets: 3, reps: "8–12" },
-        { id: "pull-front-raise", ar: "رفرفة أمامية", en: "Front Raise", sets: 2, reps: "12–15" },
+        { id: "pull-reverse-pec-deck", ar: "فراشة عكسية للكتف الخلفي", en: "Reverse Pec Deck", sets: 2, reps: "12–15" },
         { id: "pull-face-pull", ar: "سحب الوجه بالكيبل", en: "Cable Face Pull", sets: 2, reps: "12–15" },
         { id: "pull-biceps", ar: "تمرين البايسبس على الجهاز", en: "Machine Biceps Curl", sets: 3, reps: "10–15" }
       ]
