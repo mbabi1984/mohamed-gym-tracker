@@ -9,6 +9,7 @@
   <link rel="icon" href="icons/icon-192.png" />
   <link rel="apple-touch-icon" href="icons/icon-192.png" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="enhancements.css" />
   <title>متتبع تمارين محمد</title>
 </head>
 <body>
@@ -39,7 +40,23 @@
         </div>
         <button id="startTimerBtn" class="primary" type="button">مؤقت الراحة</button>
       </div>
+
+      <div class="card daily-activity-card">
+        <div>
+          <h3>نشاط اليوم</h3>
+          <p>سجل عدد خطواتك ليدخل في التقارير اليومية والأسبوعية والشهرية.</p>
+        </div>
+        <div class="steps-entry">
+          <label>خطوات اليوم
+            <input id="todaySteps" type="number" min="0" max="100000" step="1" inputmode="numeric" placeholder="مثال: 10000" />
+          </label>
+          <button id="saveTodayStepsBtn" class="secondary" type="button">حفظ الخطوات</button>
+        </div>
+        <span id="stepsSaveStatus" class="save-status" aria-live="polite"></span>
+      </div>
+
       <div id="todayWorkout"></div>
+      <div id="finishWorkoutArea"></div>
     </section>
 
     <section id="view-week" class="view">
@@ -49,7 +66,6 @@
       </div>
       <div id="weekGrid" class="week-grid"></div>
     </section>
-
 
     <section id="view-reports" class="view">
       <div class="section-title">
@@ -189,5 +205,6 @@
   </template>
 
   <script src="app.js"></script>
+  <script src="enhancements.js"></script>
 </body>
 </html>
