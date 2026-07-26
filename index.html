@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#111827" />
+  <meta name="description" content="متتبع تمارين محمد - برنامج Upper/Lower لأربعة أيام" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>متتبع تمارين محمد</title>
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <h1>متتبع تمارين محمد</h1>
+      <p id="todayLabel">جدول Upper / Lower ثابت</p>
+    </div>
+    <button id="installBtn" class="ghost hidden" type="button">تثبيت التطبيق</button>
+  </header>
+
+  <nav class="bottom-nav" aria-label="التنقل الرئيسي">
+    <button class="nav-btn active" data-view="today">اليوم</button>
+    <button class="nav-btn" data-view="week">الأسبوع</button>
+    <button class="nav-btn" data-view="reports">التقارير</button>
+    <button class="nav-btn" data-view="history">السجل</button>
+    <button class="nav-btn" data-view="body">القياسات</button>
+    <button class="nav-btn" data-view="settings">الإعدادات</button>
+  </nav>
+
+  <main>
+    <section id="view-today" class="view active">
+      <div class="card hero">
+        <div>
+          <span id="todayDayBadge" class="badge"></span>
+          <h2 id="todayWorkoutTitle"></h2>
+          <p id="todayWorkoutSubtitle"></p>
+        </div>
+        <button id="startTimerBtn" class="primary" type="button">مؤقت الراحة</button>
+      </div>
+      <div id="todayWorkout"></div>
+    </section>
+
+    <section id="view-week" class="view">
+      <div class="section-title">
+        <h2>جدول الأسبوع</h2>
+        <p>يبدأ يوم السبت، والأيام ثابتة.</p>
+      </div>
+      <div id="weekGrid" class="week-grid"></div>
+    </section>
+
+
+    <section id="view-reports" class="view">
+      <div class="section-title">
+        <h2>تقارير المتابعة</h2>
+        <p>تقرير يومي، أسبوعي، أو شهري مبني على التمارين والقياسات المسجلة.</p>
+      </div>
+
+      <div class="card report-controls">
+        <div class="segmented" role="tablist" aria-label="نوع التقرير">
+          <button class="report-mode active" data-report-mode="daily" type="button">يومي</button>
+          <button class="report-mode" data-report-mode="weekly" type="button">أسبوعي</button>
+          <button class="report-mode" data-report-mode="monthly" type="button">شهري</button>
+        </div>
+
+        <label id="reportPeriodLabel">التاريخ
+          <input id="reportPeriodInput" type="date" />
+        </label>
+
+        <button id="copyReportBtn" class="secondary" type="button">نسخ ملخص التقرير</button>
+      </div>
+
+      <div id="reportOutput"></div>
+    </section>
+
+    <section id="view-history" class="view">
+      <div class="section-title">
+        <h2>سجل التمارين</h2>
+        <p>آخر الحصص المحفوظة على هذا الجهاز.</p>
+      </div>
+      <div id="historyList"></div>
+    </section>
+
+    <section id="view-body" class="view">
+      <div class="section-title">
+        <h2>الوزن والخصر</h2>
+        <p>سجل القياس صباحًا قدر الإمكان وفي ظروف متشابهة.</p>
+      </div>
+      <form id="bodyForm" class="card form-grid">
+        <label>التاريخ
+          <input id="bodyDate" type="date" required />
+        </label>
+        <label>الوزن (كغ)
+          <input id="bodyWeight" type="number" min="30" max="300" step="0.1" inputmode="decimal" />
+        </label>
+        <label>محيط الخصر (سم)
+          <input id="bodyWaist" type="number" min="40" max="250" step="0.1" inputmode="decimal" />
+        </label>
+        <label class="wide">ملاحظة
+          <input id="bodyNote" type="text" maxlength="120" placeholder="نوم، إمساك، وجبة مالحة..." />
+        </label>
+        <button class="primary wide" type="submit">حفظ القياس</button>
+      </form>
+      <div id="bodyHistory"></div>
+    </section>
+
+    <section id="view-settings" class="view">
+      <div class="section-title">
+        <h2>الإعدادات والنسخ الاحتياطي</h2>
+        <p>البيانات محفوظة محليًا على جهازك.</p>
+      </div>
+
+      <div class="card settings-card">
+        <label class="switch-row">
+          <span>
+            <strong>الوضع الداكن</strong>
+            <small>مريح أثناء التمرين.</small>
+          </span>
+          <input id="darkModeToggle" type="checkbox" />
+        </label>
+
+        <div class="divider"></div>
+
+        <h3>مؤقت الراحة الافتراضي</h3>
+        <select id="defaultTimer">
+          <option value="60">60 ثانية</option>
+          <option value="90" selected>90 ثانية</option>
+          <option value="120">120 ثانية</option>
+        </select>
+
+        <div class="divider"></div>
+
+        <button id="exportBtn" class="secondary" type="button">تصدير نسخة احتياطية</button>
+        <label class="file-label secondary">
+          استيراد نسخة احتياطية
+          <input id="importInput" type="file" accept="application/json" hidden />
+        </label>
+        <button id="clearBtn" class="danger" type="button">مسح كل البيانات</button>
+      </div>
+
+      <div class="card info-card">
+        <h3>مهم</h3>
+        <p>هذه النسخة لا تحتاج حسابًا أو إنترنت لحفظ التمرين. حذف بيانات المتصفح أو تغيير الجهاز قد يمسح السجل، لذلك استخدم التصدير بشكل دوري.</p>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="timerDialog">
+    <div class="timer-box">
+      <h2>مؤقت الراحة</h2>
+      <div id="timerDisplay" class="timer-display">01:30</div>
+      <div class="timer-presets">
+        <button data-seconds="60" type="button">60</button>
+        <button data-seconds="90" type="button">90</button>
+        <button data-seconds="120" type="button">120</button>
+      </div>
+      <div class="timer-actions">
+        <button id="timerStart" class="primary" type="button">ابدأ</button>
+        <button id="timerReset" class="secondary" type="button">إعادة</button>
+        <button id="timerClose" class="ghost" type="button">إغلاق</button>
+      </div>
+    </div>
+  </dialog>
+
+  <template id="exerciseTemplate">
+    <article class="card exercise-card">
+      <div class="exercise-head">
+        <div>
+          <h3 class="exercise-name"></h3>
+          <p class="exercise-target"></p>
+        </div>
+        <div class="exercise-links">
+          <a class="youtube-link" target="_blank" rel="noopener">يوتيوب</a>
+          <button class="edit-link ghost" type="button">تعديل الرابط</button>
+        </div>
+      </div>
+      <div class="previous-result"></div>
+      <div class="sets-table">
+        <div class="set-row set-header">
+          <span>الجولة</span><span>الوزن</span><span>العدات</span><span>تم</span>
+        </div>
+        <div class="set-rows"></div>
+      </div>
+      <label class="note-label">ملاحظة التمرين
+        <input class="exercise-note" type="text" maxlength="100" placeholder="ألم، مستوى الصعوبة، تعديل المقعد..." />
+      </label>
+    </article>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
