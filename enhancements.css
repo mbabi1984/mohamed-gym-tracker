@@ -1,0 +1,78 @@
+/* Version 3 enhancements */
+.daily-activity-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 14px;
+  align-items: end;
+}
+
+.daily-activity-card h3 { margin: 0 0 5px; }
+.daily-activity-card p { margin: 0; color: var(--muted); line-height: 1.6; }
+
+.steps-entry {
+  display: grid;
+  grid-template-columns: minmax(130px, 180px) auto;
+  gap: 8px;
+  align-items: end;
+}
+
+.steps-entry label { color: var(--muted); font-size: 0.82rem; }
+.steps-entry input {
+  width: 100%;
+  margin-top: 6px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 11px;
+}
+
+.save-status {
+  grid-column: 1 / -1;
+  min-height: 1.2em;
+  color: #047857;
+  font-size: 0.82rem;
+}
+
+.finish-workout-card { text-align: center; padding: 20px; }
+.finish-workout-card h3 { margin: 0 0 6px; }
+.finish-workout-card p { color: var(--muted); margin: 0 0 14px; }
+.finish-workout-card .primary { width: min(360px, 100%); }
+
+.workout-closed-card { text-align: center; padding: 30px 18px; }
+.workout-closed-icon {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(16, 185, 129, 0.14);
+  color: #047857;
+  font-size: 1.8rem;
+  font-weight: 900;
+}
+.workout-closed-card h3 { margin: 0 0 7px; font-size: 1.35rem; }
+.workout-closed-card p { color: var(--muted); margin: 0 0 14px; }
+.workout-closed-actions { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+
+.history-finished {
+  display: inline-flex;
+  padding: 4px 8px;
+  margin-inline-start: 6px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #047857;
+  background: rgba(16, 185, 129, 0.12);
+}
+
+.steps-report-card { text-align: center; }
+.steps-report-card h3 { margin: 0 0 8px; }
+.steps-report-card strong { display: block; font-size: 1.8rem; margin-bottom: 5px; }
+.steps-report-card p { margin: 0; color: var(--muted); }
+
+@media (max-width: 650px) {
+  .daily-activity-card { grid-template-columns: 1fr; align-items: stretch; }
+  .steps-entry { grid-template-columns: 1fr auto; }
+}
