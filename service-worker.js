@@ -1,9 +1,11 @@
-const CACHE_NAME = "mohamed-gym-tracker-v2";
+const CACHE_NAME = "mohamed-gym-tracker-v3";
 const ASSETS = [
   "./",
   "./index.html",
   "./styles.css",
+  "./enhancements.css",
   "./app.js",
+  "./enhancements.js",
   "./manifest.webmanifest",
   "./icons/icon-192.png",
   "./icons/icon-512.png"
