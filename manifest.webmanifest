@@ -1,7 +1,7 @@
 {
   "name": "متتبع تمارين محمد",
   "short_name": "تماريني",
-  "description": "متتبع برنامج Upper / Lower لأربعة أيام",
+  "description": "متتبع برنامج خمسة أيام Upper / Lower / Push / Pull / Legs",
   "lang": "ar",
   "dir": "rtl",
   "start_url": "./",
